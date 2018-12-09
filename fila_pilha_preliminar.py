@@ -1,12 +1,13 @@
-class fila:
+class Fila:
     def __init__(self):
-        self.primeiro = none
-        self.ultimo = none
-        self.__tamanho = none
+        self.__fila = []
+        self.primeiro = None
+        self.ultimo = None
+        self.__tamanho = 0
 
     class Nó:
         def __init__(self, conteudo):
-            self.proximo = none
+            self.proximo = None
             self.conteudo = conteudo
 
     def __len__(self):
@@ -14,7 +15,6 @@ class fila:
 
     def __repr__(self):
         return self.__str__()
-
     def __str__(self):
         formato = "["
         atual = self.primeiro
@@ -25,17 +25,40 @@ class fila:
             atual = atual.proximo
         formato += "]"
         return formato
+
+    def enfileirar(self, nome):
+        self.__fila.append(nome)
+
+    def desenfileirar(self):
+        return self.__fila.pop(0)
+
     def __iter__(self):
         return self
 
     def __next__(self):
-        if self.__iterando is none:
+        if self.__iterando is None:
             self.__iterando = self.__primeiro
 
         else:
             self.__iterando = self.__iterando.proximo
 
-        if self.__iterando is not none:
+        if self.__iterando is not None:
             return self.__iterando.conteudo
-        raise StopIteration
+        try:
+            return self.desenfileirar()
+        except IndexError:
+            raise StopIteration
 
+    def __getitem__(self, item):
+        return self.__fila[item-1]
+
+    def __setitem__(self, item, value):
+        self.__fila[item-1] = value
+fila = Fila()
+
+fila.enfileirar('Rsul')
+fila.enfileirar('Victor')
+fila.enfileirar('Luiz')
+
+print(format(fila[2]))
+print(format(fila[1]))
