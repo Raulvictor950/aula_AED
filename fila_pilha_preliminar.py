@@ -28,9 +28,10 @@ class Fila:
 
     def enfileirar(self, nome):
         self.__fila.append(nome)
+        self.__tamanho += 1
 
     def desenfileirar(self):
-        return self.__fila.pop(0)
+        return self.__fila.pop()
 
     def __iter__(self):
         return self
@@ -56,9 +57,10 @@ class Fila:
         self.__fila[item-1] = value
 fila = Fila()
 
-fila.enfileirar('Rsul')
+fila.enfileirar('Raul')
 fila.enfileirar('Victor')
 fila.enfileirar('Luiz')
 
 print(format(fila[2]))
 print(format(fila[1]))
+print(format(len(fila)))
